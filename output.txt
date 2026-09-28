@@ -1,0 +1,122 @@
+
+C:\study\InternShips\AI\task 2>python mnist_digit_classifier.py
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1790415045.687450    9136 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1790415062.630688    9136 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+============================================================
+HANDWRITTEN DIGIT CLASSIFICATION USING CNN
+============================================================
+
+MNIST dataset not found.
+Downloading MNIST dataset...
+Dataset downloaded successfully.
+Dataset location: C:\study\InternShips\AI\task 2\dataset\mnist.npz
+
+Loading MNIST dataset...
+Training images: (60000, 28, 28)
+Testing images : (10000, 28, 28)
+
+Preprocessing images...
+Training shape after preprocessing: (60000, 28, 28, 1)
+Testing shape after preprocessing : (10000, 28, 28, 1)
+
+Building CNN model...
+I0000 00:00:1790415085.456392    9136 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ conv2d (Conv2D)                      │ (None, 26, 26, 32)          │             320 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d (MaxPooling2D)         │ (None, 13, 13, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_1 (Conv2D)                    │ (None, 11, 11, 64)          │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_1 (MaxPooling2D)       │ (None, 5, 5, 64)            │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten (Flatten)                    │ (None, 1600)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 128)                 │         204,928 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 10)                  │           1,290 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 225,034 (879.04 KB)
+ Trainable params: 225,034 (879.04 KB)
+ Non-trainable params: 0 (0.00 B)
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+
+Training CNN model...
+Epoch 1/5
+844/844 ━━━━━━━━━━━━━━━━━━━━ 23s 23ms/step - accuracy: 0.9223 - loss: 0.2549 - val_accuracy: 0.9858 - val_loss: 0.0508
+Epoch 2/5
+844/844 ━━━━━━━━━━━━━━━━━━━━ 20s 23ms/step - accuracy: 0.9747 - loss: 0.0875 - val_accuracy: 0.9880 - val_loss: 0.0412
+Epoch 3/5
+844/844 ━━━━━━━━━━━━━━━━━━━━ 20s 24ms/step - accuracy: 0.9805 - loss: 0.0655 - val_accuracy: 0.9892 - val_loss: 0.0394
+Epoch 4/5
+844/844 ━━━━━━━━━━━━━━━━━━━━ 20s 23ms/step - accuracy: 0.9842 - loss: 0.0531 - val_accuracy: 0.9893 - val_loss: 0.0356
+Epoch 5/5
+844/844 ━━━━━━━━━━━━━━━━━━━━ 19s 23ms/step - accuracy: 0.9863 - loss: 0.0430 - val_accuracy: 0.9910 - val_loss: 0.0359
+
+Evaluating model...
+
+Test Loss     : 0.024771053344011307
+Test Accuracy : 0.991599977016449
+
+Generating predictions...
+
+============================================================
+CLASSIFICATION RESULTS
+============================================================
+
+Accuracy: 0.9916
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99       980
+           1       1.00      0.99      1.00      1135
+           2       0.99      0.99      0.99      1032
+           3       0.99      1.00      0.99      1010
+           4       0.99      0.99      0.99       982
+           5       0.99      0.99      0.99       892
+           6       1.00      0.98      0.99       958
+           7       0.99      0.99      0.99      1028
+           8       0.99      0.99      0.99       974
+           9       0.99      0.99      0.99      1009
+
+    accuracy                           0.99     10000
+   macro avg       0.99      0.99      0.99     10000
+weighted avg       0.99      0.99      0.99     10000
+
+
+Model saved as: C:\study\InternShips\AI\task 2\mnist_digit_model.keras
+
+============================================================
+SAMPLE PREDICTION
+============================================================
+Actual digit    : 7
+Predicted digit : 7
+
+============================================================
+TASK 2 COMPLETED
+============================================================
+
+Project files generated:
+1. dataset/mnist.npz
+2. sample_digits.png
+3. accuracy_curve.png
+4. loss_curve.png
+5. confusion_matrix.png
+6. sample_predictions.png
+7. mnist_digit_model.keras
+
+Final Test Accuracy: 0.991599977016449
+
+The CNN successfully classifies handwritten digits from 0 to 9.
+
+C:\study\InternShips\AI\task 2>
